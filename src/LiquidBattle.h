@@ -1,9 +1,9 @@
 /*
  * @Author: Tong Haixuan
  * @Date: 2021-05-24 20:30:21
- * @LastEditTime: 2021-06-27 01:50:23
+ * @LastEditTime: 2021-06-27 01:54:47
  * @LastEditors: Tong Haixuan
- * @Description:
+ * @Description: The Main File of LiquidBattle
  */
 
 #ifndef LIQUID_BATTLE_H
