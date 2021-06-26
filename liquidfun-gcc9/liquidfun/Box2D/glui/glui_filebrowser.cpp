@@ -1,3 +1,10 @@
+/*
+ * @Author: Tong Haixuan
+ * @Date: 2021-06-26 18:05:29
+ * @LastEditTime: 2021-06-26 18:11:23
+ * @LastEditors: Tong Haixuan
+ * @Description: fix Line 114 error:unused variable 'len' [-Werror=unused-variable]
+ */
 /****************************************************************************
   
   GLUI User Interface Toolkit
@@ -104,7 +111,7 @@ void GLUI_FileBrowser::fbreaddir(const char *d) {
     list->delete_all();
     if (hFind != INVALID_HANDLE_VALUE) {
       do {
-        int len = strlen(FN.cFileName);
+        // int len = strlen(FN.cFileName);
         if (FN.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
           item = '\\';
           item += FN.cFileName;

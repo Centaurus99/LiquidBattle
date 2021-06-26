@@ -1,4 +1,11 @@
 /*
+ * @Author: Tong Haixuan
+ * @Date: 2021-06-26 18:05:27
+ * @LastEditTime: 2021-06-26 18:10:19
+ * @LastEditors: Tong Haixuan
+ * @Description: fix Line 722 error:suggest explicit braces to avoid ambiguous 'else' [-Werror=dangling-else]
+ */
+/*
  * freeglut_main_mswin.c
  *
  * The Windows-specific mouse cursor related stuff.
@@ -713,6 +720,7 @@ static LRESULT fghWindowProcKeyPress(SFG_Window *window, UINT uMsg, GLboolean ke
 #endif
     
     if( keypress != -1 )
+    {
         if (keydown)
         {
             INVOKE_WCB( *window, Special,
@@ -727,6 +735,7 @@ static LRESULT fghWindowProcKeyPress(SFG_Window *window, UINT uMsg, GLboolean ke
                             window->State.MouseX, window->State.MouseY )
             );
         }
+    }
 
     fgState.Modifiers = INVALID_MODIFIERS;
 

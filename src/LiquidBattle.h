@@ -1,7 +1,7 @@
 /*
  * @Author: Tong Haixuan
  * @Date: 2021-05-24 20:30:21
- * @LastEditTime: 2021-06-26 18:00:03
+ * @LastEditTime: 2021-06-26 18:12:41
  * @LastEditors: Tong Haixuan
  * @Description:
  */
@@ -318,7 +318,7 @@ private:
 	char binding_key[5];
 
 	//Initial keyboard state
-	u_char keyboard_state_ = 0;
+	char keyboard_state_ = 0;
 
 	// Preset health points
 	float32 MAX_HP_ = 100.0f;
@@ -415,7 +415,7 @@ public:
 	}
 
 	// Update keyboard state with a key press or release
-	void KeyBoardUpdate(u_char key) {
+	void KeyBoardUpdate(char key) {
 		for (uint32 i = 0; i < 4; ++i) {
 			if (key == binding_key[i]) {
 				keyboard_state_ ^= (1 << i);
