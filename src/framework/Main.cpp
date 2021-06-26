@@ -1,4 +1,11 @@
 /*
+ * @Author: Tong Haixuan
+ * @Date: 2021-06-27 01:49:23
+ * @LastEditTime: 2021-06-27 01:51:48
+ * @LastEditors: Tong Haixuan
+ * @Description: 
+ */
+/*
 * Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 * Copyright (c) 2013 Google, Inc.
 *
@@ -36,6 +43,10 @@
 #include <algorithm>
 #include <string>
 #include <sstream>
+
+
+b2Version liquidbattle_version = {0, 1, 0};
+
 
 namespace TestMain
 {
@@ -548,6 +559,7 @@ static void Restart(int)
 	entry = g_testEntries + testIndex;
 	test = entry->createFcn();
 	Resize(width, height);
+	settings.pause = 0;
 }
 #endif  // ENABLE_GLUI
 
@@ -604,7 +616,7 @@ int main(int argc, char** argv)
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
 	glutInitWindowSize(width, height);
 	char title[32];
-	sprintf(title, "Box2D Version %d.%d.%d", b2_version.major, b2_version.minor, b2_version.revision);
+	sprintf(title, "LiquidBattle Version %d.%d.%d", liquidbattle_version.major, liquidbattle_version.minor, liquidbattle_version.revision);
 	mainWindow = glutCreateWindow(title);
 	//glutSetOption (GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
 
@@ -634,13 +646,10 @@ int main(int argc, char** argv)
 #if ENABLE_GLUI
 	glui = GLUI_Master.create_glui_subwindow( mainWindow,
 		GLUI_SUBWINDOW_RIGHT );
+	
+	glui->add_statictext("Welcome to LiquidBattle!");
 
-	glui->add_statictext("Tests");
-	GLUI_Listbox* testList =
-		glui->add_listbox("", &testSelection);
-
-	glui->add_separator();
-
+#ifdef DEBUG
 	GLUI_Spinner* velocityIterationSpinner =
 		glui->add_spinner("Vel Iters", GLUI_SPINNER_INT, &settings.velocityIterations);
 	velocityIterationSpinner->set_int_limits(1, 500);
@@ -679,17 +688,10 @@ int main(int argc, char** argv)
 	glui->add_checkbox_to_panel(drawPanel, "Statistics", &settings.drawStats);
 	glui->add_checkbox_to_panel(drawPanel, "Profile", &settings.drawProfile);
 
-	int32 testCount = 0;
-	TestEntry* e = g_testEntries;
-	while (e->createFcn)
-	{
-		testList->add_item(testCount, e->name);
-		++testCount;
-		++e;
-	}
-
-	glui->add_button("Pause", 0, Pause);
 	glui->add_button("Single Step", 0, SingleStep);
+
+#endif
+	glui->add_button("Pause", 0, Pause);
 	glui->add_button("Restart", 0, Restart);
 
 	glui->add_button("Quit", 0,(GLUI_Update_CB)Exit);

@@ -1,7 +1,7 @@
 /*
  * @Author: Tong Haixuan
  * @Date: 2021-06-26 17:28:50
- * @LastEditTime: 2021-06-26 21:11:00
+ * @LastEditTime: 2021-06-26 21:33:27
  * @LastEditors: Tong Haixuan
  * @Description: Generate Entries
  */
@@ -36,6 +36,8 @@
 #endif
 
 #include "LiquidBattle.h"
+
+TestEntry liquid_battle = {"LiquidBattle", LiquidBattle::Create};
 
 TestEntry g_testEntries[] =
 {
