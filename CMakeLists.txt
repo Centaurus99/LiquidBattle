@@ -33,8 +33,12 @@ set(LiquidBattle_Framework_SRCS
 
 #define the test files.
 set(LiquidBattle_Tests_SRCS
-	src/TestEntries.cpp
+	src/MyDebug.h
+	src/CollisionData.h
+	src/Player.h
+	src/Obstacle.h
 	src/LiquidBattle.h
+	src/LiquidBattle.cpp
 )
 
 # These are used to create visual studio folders.
