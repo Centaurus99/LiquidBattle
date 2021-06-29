@@ -1,7 +1,7 @@
 /*
  * @Author: Tong Haixuan
  * @Date: 2021-05-24 20:30:21
- * @LastEditTime: 2021-06-30 00:16:47
+ * @LastEditTime: 2021-06-30 00:39:22
  * @LastEditors: Tong Haixuan
  * @Description: The Main File of LiquidBattle
  */
@@ -25,14 +25,19 @@ class MyContactFilter : public b2ContactFilter {
 public:
 	// Active when collision happen between body and particle
 	bool ShouldCollide(b2Fixture* fixture, b2ParticleSystem* particleSystem, int32 particleIndex) {
-		// if (fixture->GetBody()->GetUserData()) {
-		// 	if (fixture->GetBody()->GetUserData())
-		// 		MyDebug::Print(static_cast<CollisionData*>(fixture->GetBody()->GetUserData())->GetFlag());
-		// 	MyDebug::Print('-');
-		// 	if (particleSystem->GetUserDataBuffer()[particleIndex])
-		// 		MyDebug::Print(static_cast<CollisionData*>(particleSystem->GetUserDataBuffer()[particleIndex])->GetFlag());
-		// 	MyDebug::Print('\n');
-		// }
+
+		/* Here is the debug information of collision between body and particle. */
+// #ifdef DEBUG
+// 		if (fixture->GetBody()->GetUserData()) {
+// 			if (fixture->GetBody()->GetUserData())
+// 				MyDebug::Print(static_cast<CollisionData*>(fixture->GetBody()->GetUserData())->GetFlag());
+// 			MyDebug::Print('-');
+// 			if (particleSystem->GetUserDataBuffer()[particleIndex])
+// 				MyDebug::Print(static_cast<CollisionData*>(particleSystem->GetUserDataBuffer()[particleIndex])->GetFlag());
+// 			MyDebug::Print('\n');
+// 		}
+// #endif
+
 		if (fixture->GetBody()->GetUserData()) {
 			uint32 particle_flag = 0;
 			if (!particleSystem->GetUserDataBuffer()[particleIndex] ||
@@ -46,7 +51,10 @@ public:
 
 	// Active when collision happen between body and body
 	bool ShouldCollide(b2Fixture* fixtureA, b2Fixture* fixtureB) {
+
+		/* Here is the debug information of collision between body and body. */
 		if (fixtureA->GetBody()->GetUserData() || fixtureB->GetBody()->GetUserData()) {
+			MyDebug::Print("Collision: ");
 			if (fixtureA->GetBody()->GetUserData())
 				MyDebug::Print(static_cast<CollisionData*>(fixtureA->GetBody()->GetUserData())->GetFlag());
 			MyDebug::Print('-');
@@ -54,6 +62,7 @@ public:
 				MyDebug::Print(static_cast<CollisionData*>(fixtureB->GetBody()->GetUserData())->GetFlag());
 			MyDebug::Print('\n');
 		}
+
 		CollisionData* UserDataA = static_cast<CollisionData*>(fixtureA->GetBody()->GetUserData());
 		CollisionData* UserDataB = static_cast<CollisionData*>(fixtureB->GetBody()->GetUserData());
 		if (UserDataA && UserDataB && (UserDataA->GetFlag() ^ UserDataB->GetFlag()) == ~0u) {
@@ -85,16 +94,11 @@ public:
 		m_world->SetContactFilter(&m_contact_filter_);
 		player_list_.push_back(new Player{ m_world, "wsad", 0, b2Vec2{-1.0f, 10.0f}, ColorSet[1] });
 		player_list_.push_back(new Player{ m_world, "ikjl", 1, b2Vec2{1.0f, 10.0f}, ColorSet[2] });
-		// obstacle_list_.push_back(new Obstacle{ m_world, -7, 5 + 11, 2.0f, 1.0f, 0.06f, 2.5f });
-		obstacle_list_.push_back(new Obstacle{ m_world, 0, 5, 2.0f, 1.0f, 0.06f, 2.5f });
-		// obstacle_list_.push_back(new Obstacle{ m_world, 7, 5 + 11, 2.0f, 1.0f, 0.06f, 2.5f });
-		// player_list_.push_back(new Player{ m_world, "8546", 2, b2Vec2{1.5f, 10.0f} });
-		// player_.push_back();
 
-		// body_debug = CreateBody(m_world, 0, 3, 2.0f, 1.0f, 0.06f, 2.5f);
-		// CreateBody(m_world, 0, 3, 3.0f, 2.0f, 0.08f, 2.0f);
-		// CreateBody(m_world, 5, 5, 2.0f, 1.0f, 0.1f);
-		// CreateBody(m_world, -5, 5, 2.0f, 1.0f, 0.1f);
+		/* This player3 can be controlled with the small keyboard. */
+		// player_list_.push_back(new Player{ m_world, "8546", 2, b2Vec2{1.5f, 10.0f}, ColorSet[0] });
+
+		obstacle_list_.push_back(new Obstacle{ m_world, 0, 5, 2.0f, 1.0f, 0.06f, 2.5f });
 
 		{
 			b2BodyDef bd;
@@ -118,7 +122,6 @@ public:
 			b2BodyDef bd;
 			bd.position.Set(0, 5);
 			b2Body* ground = m_world->CreateBody(&bd);
-			// ground->SetUserData(new CollisionData{ ~ });
 
 			{
 				b2PolygonShape shape;
@@ -197,19 +200,12 @@ public:
 
 	// Print current infomation to screen
 	void PrintInformation() {
+		/* Operate tips */
 		// m_debugDraw.DrawString(5, m_textLine, "Rotate: a,d   Emit: w,s");
 		// m_textLine += DRAW_STRING_NEW_LINE;
 		for (auto x : player_list_) {
 			x->PrintInformation(&m_debugDraw, m_textLine);
 		}
-	}
-
-	void BeginContact(b2ParticleSystem* particleSystem,
-		b2ParticleBodyContact* particleBodyContact) override {
-#ifdef DEBUG
-		std::cerr << "Contact!\n";
-		std::cerr << particleBodyContact << std::endl;
-#endif
 	}
 
 	void Step(Settings* settings) {
@@ -248,7 +244,6 @@ public:
 
 	float32 GetDefaultViewZoom() const {
 		return 0.35f;
-		// return 0.65f;
 	}
 
 	static Test* Create() {

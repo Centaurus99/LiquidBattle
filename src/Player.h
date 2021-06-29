@@ -1,7 +1,7 @@
 /*
  * @Author: Tong Haixuan
  * @Date: 2021-06-26 20:29:11
- * @LastEditTime: 2021-06-30 00:13:57
+ * @LastEditTime: 2021-06-30 00:35:26
  * @LastEditors: Tong Haixuan
  * @Description: Player Class
  */
@@ -99,13 +99,12 @@ private:
 
 		//The speed of the reference frame to which the current emit point belongs
 		b2Vec2 point_velocity = body_->GetLinearVelocity();
-		// b2Vec2 point_velocity = body_->GetLinearVelocityFromWorldPoint(emit_point);
 
 		//Set the position and speed
 		SetPosition(emit_point);
 		SetVelocity(emit_velocity_ * (-vec) + point_velocity);
 
-		//Some information
+		/* Some debug information */
 		// MyDebug::PrintPos(GetPosition() - body_->GetPosition(), "DeltaPosition");
 		// MyDebug::PrintPos(GetPosition(), "EmitPosition");
 		// MyDebug::PrintPos(GetVelocity(), "EmitVelocity");

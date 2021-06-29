@@ -1,7 +1,7 @@
 /*
  * @Author: Tong Haixuan
  * @Date: 2021-06-26 21:04:22
- * @LastEditTime: 2021-06-26 21:05:03
+ * @LastEditTime: 2021-06-30 00:37:24
  * @LastEditors: Tong Haixuan
  * @Description: Obstacle Class
  */
@@ -42,7 +42,6 @@ public:
 			fd.restitution = 0.2f;
 			fd.density = density;
 			fd.friction = 0.5f;
-			// fd.userData = (void*)2;
 			m_body_->CreateFixture(&fd);
 		}
 		{
@@ -58,7 +57,6 @@ public:
 			fd.restitution = 0.2f;
 			fd.density = density;
 			fd.friction = 0.5f;
-			// fd.userData = (void*)2;
 			m_body_->CreateFixture(&fd);
 		}
 		{
@@ -74,7 +72,6 @@ public:
 			fd.restitution = 0.2f;
 			fd.density = density;
 			fd.friction = 0.5f;
-			// fd.userData = (void*)2;
 			m_body_->CreateFixture(&fd);
 		}
 		{
@@ -90,11 +87,12 @@ public:
 			fd.restitution = 0.2f;
 			fd.density = density;
 			fd.friction = 0.5f;
-			// fd.userData = (void*)2;
 			m_body_->CreateFixture(&fd);
 		}
 		float32 mass = 2 * (2 * row + 2 * col - 4 * delta) * thickness * density;
 		float32 volume = 4 * row * col;
+
+		/* Obstacle debug information */
 		MyDebug::Print(mass);
 		MyDebug::Print(" | ");
 		MyDebug::Print(volume);
