@@ -1,7 +1,7 @@
 /*
  * @Author: Tong Haixuan
  * @Date: 2021-06-26 20:29:11
- * @LastEditTime: 2021-06-26 20:30:19
+ * @LastEditTime: 2021-06-29 23:51:39
  * @LastEditors: Tong Haixuan
  * @Description: Player Class
  */
@@ -229,6 +229,9 @@ private:
 	//Which group this player belong to
 	uint32 m_player_group_;
 
+	//Player color
+	b2Color color_;
+
 	// Keyboard keys in order : Move Forward, Move Backward, Turn Left, Turn Right
 	char binding_key[5];
 
@@ -368,6 +371,13 @@ public:
 	// Get this player's HP
 	float32 GetHP() const {
 		return NOW_HP_;
+	}
+
+	// Set the color of this player
+	void SetColor(const b2Color& color){
+		color_ = color;
+		m_ejector_->SetColor(color);
+		m_ejector_->GetBody()->SetColor(color);
 	}
 };
 
