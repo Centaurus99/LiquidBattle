@@ -1,7 +1,7 @@
 /*
  * @Author: Tong Haixuan
  * @Date: 2021-05-24 20:30:21
- * @LastEditTime: 2021-06-29 23:57:36
+ * @LastEditTime: 2021-06-30 00:00:09
  * @LastEditors: Tong Haixuan
  * @Description: The Main File of LiquidBattle
  */
@@ -196,11 +196,11 @@ public:
 
 	// Print current infomation to screen
 	void PrintInformation() {
+		// m_debugDraw.DrawString(5, m_textLine, "Rotate: a,d   Emit: w,s");
+		// m_textLine += DRAW_STRING_NEW_LINE;
 		for (auto x : player_list_) {
 			x->PrintInformation(&m_debugDraw, m_textLine);
 		}
-		m_debugDraw.DrawString(5, m_textLine, "Rotate: a,d   Emit: w,s");
-		m_textLine += DRAW_STRING_NEW_LINE;
 	}
 
 	void BeginContact(b2ParticleSystem* particleSystem,
