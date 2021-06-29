@@ -1,4 +1,11 @@
 /*
+ * @Author: Tong Haixuan
+ * @Date: 2021-05-24 16:16:08
+ * @LastEditTime: 2021-06-29 23:30:42
+ * @LastEditors: Tong Haixuan
+ * @Description: Modified by Tong Haixuan. Add body color.
+ */
+/*
 * Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 * Copyright (c) 2013 Google, Inc.
 *
@@ -25,6 +32,9 @@
 
 b2Body::b2Body(const b2BodyDef* bd, b2World* world)
 {
+	//21.06.27 added. Initialize body color.
+	m_color = {-1.0f, -1.0f, -1.0f};
+
 	b2Assert(bd->position.IsValid());
 	b2Assert(bd->linearVelocity.IsValid());
 	b2Assert(b2IsValid(bd->angle));
@@ -553,4 +563,33 @@ void b2Body::Dump()
 		b2Log("  }\n");
 	}
 	b2Log("}\n");
+}
+
+/// 21.06.28 added. Get the color of body.
+const b2Color b2Body::GetColor() const
+{
+	if (m_color.r != -1.0f)
+	{
+		return m_color;
+	}
+	else if (IsActive() == false)
+	{
+		return b2Color{0.5f, 0.5f, 0.3f};
+	}
+	else if (GetType() == b2_staticBody)
+	{
+		return b2Color{0.5f, 0.9f, 0.5f};
+	}
+	else if (GetType() == b2_kinematicBody)
+	{
+		return b2Color{0.5f, 0.5f, 0.9f};
+	}
+	else if (IsAwake() == false)
+	{
+		return b2Color{0.6f, 0.6f, 0.6f};
+	}
+	else
+	{
+		return b2Color{0.9f, 0.7f, 0.7f};
+	}
 }

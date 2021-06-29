@@ -1,4 +1,11 @@
 /*
+ * @Author: Tong Haixuan
+ * @Date: 2021-06-27 15:24:20
+ * @LastEditTime: 2021-06-29 23:32:25
+ * @LastEditors: Tong Haixuan
+ * @Description: Modified by Tong Haixuan. Add body color.
+ */
+/*
 * Copyright (c) 2006-2011 Erin Catto http://www.box2d.org
 * Copyright (c) 2013 Google, Inc.
 *
@@ -21,6 +28,7 @@
 #define B2_BODY_H
 
 #include <Box2D/Common/b2Math.h>
+#include <Box2D/Common/b2Draw.h>
 #include <Box2D/Collision/Shapes/b2Shape.h>
 #include <memory>
 
@@ -401,6 +409,12 @@ public:
 	void SetTransform(float32 positionX, float32 positionY, float32 angle);
 #endif // LIQUIDFUN_EXTERNAL_LANGUAGE_API
 
+	/// 21.06.28 added. Get the color of body.
+	const b2Color GetColor() const;
+
+	/// 21.06.29 added. Set the color of body.
+	void SetColor(const b2Color& color);
+
 private:
 
 	friend class b2World;
@@ -486,7 +500,15 @@ private:
 	float32 m_sleepTime;
 
 	void* m_userData;
+
+	// 21.06.27 added. Body color.
+	b2Color m_color;
 };
+
+/// 21.06.29 added. Get the color of body.
+inline void b2Body::SetColor(const b2Color& color){
+	m_color = color;
+}
 
 inline b2BodyType b2Body::GetType() const
 {
