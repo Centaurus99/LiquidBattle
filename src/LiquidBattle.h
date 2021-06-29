@@ -1,7 +1,7 @@
 /*
  * @Author: Tong Haixuan
  * @Date: 2021-05-24 20:30:21
- * @LastEditTime: 2021-06-27 01:54:47
+ * @LastEditTime: 2021-06-29 23:57:36
  * @LastEditors: Tong Haixuan
  * @Description: The Main File of LiquidBattle
  */
@@ -183,19 +183,14 @@ public:
 		// MyDebug::Print(key);
 		Keyboard(key);
 		if (key == '=') {
-			obstacle_list_.push_back(new Obstacle{ m_world, 0, 3, 2.0f, 1.0f, 0.06f, 2.5f });
-			// player_list_.push_back(new Player{ m_world, "wsad", 0, b2Vec2{-1.0f, 10.0f} });
+			// obstacle_list_.push_back(new Obstacle{ m_world, 0, 3, 2.0f, 1.0f, 0.06f, 2.5f });
+			player_list_.push_back(new Player{ m_world, "wsad", 0, b2Vec2{-1.0f, 10.0f} });
 		}
 		if (key == '-') {
-			// delete *player_list_.end();
-			// if (body_debug){
-			// 	m_world->DestroyBody(body_debug);
-			// 	body_debug = nullptr;
-			// }
-			// if (!player_list_.empty()) {
-			// 	delete* player_list_.rbegin();
-			// 	player_list_.pop_back();
-			// }
+			if (!player_list_.empty()) {
+				delete* player_list_.rbegin();
+				player_list_.pop_back();
+			}
 		}
 	}
 
