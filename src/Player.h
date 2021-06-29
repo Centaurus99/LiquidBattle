@@ -1,7 +1,7 @@
 /*
  * @Author: Tong Haixuan
  * @Date: 2021-06-26 20:29:11
- * @LastEditTime: 2021-06-29 23:51:39
+ * @LastEditTime: 2021-06-29 23:52:46
  * @LastEditors: Tong Haixuan
  * @Description: Player Class
  */
@@ -243,7 +243,7 @@ private:
 	// Current health points
 	float32 NOW_HP_ = MAX_HP_;
 	// Damage per normal particle
-	float32 damage_by_normal_particle_ = 0.01f;
+	float32 damage_by_normal_particle_ = 0.005f;
 	// Damage per player's particle
 	float32 damage_by_player_particle_ = 0.1f;
 
