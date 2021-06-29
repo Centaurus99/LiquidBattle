@@ -37,6 +37,7 @@ set(LiquidBattle_Tests_SRCS
 	src/CollisionData.h
 	src/Player.h
 	src/Obstacle.h
+	src/ColorSet.h
 	src/LiquidBattle.h
 	src/LiquidBattle.cpp
 )

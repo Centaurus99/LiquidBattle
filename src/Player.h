@@ -1,7 +1,7 @@
 /*
  * @Author: Tong Haixuan
  * @Date: 2021-06-26 20:29:11
- * @LastEditTime: 2021-06-29 23:52:46
+ * @LastEditTime: 2021-06-30 00:13:57
  * @LastEditors: Tong Haixuan
  * @Description: Player Class
  */
@@ -12,7 +12,7 @@
 #include "CollisionData.h"
 #include "framework/ParticleEmitter.h"
 
-// Emit particles from a body
+ // Emit particles from a body
 class Ejector : public RadialEmitter {
 private:
 	// Callback used to notify the user of created particles.
@@ -230,7 +230,7 @@ private:
 	uint32 m_player_group_;
 
 	//Player color
-	b2Color color_;
+	b2Color m_color_;
 
 	// Keyboard keys in order : Move Forward, Move Backward, Turn Left, Turn Right
 	char binding_key[5];
@@ -253,8 +253,9 @@ public:
 	/// @param keyboard Keyboard keys to control Player. WARNING: This char array MUST have EXACTLY four elements and one '\0'
 	/// @param player_group this player is blong to which group
 	/// @param position this player will be set to where
-	Player(b2World* const world, const char keyboard[5], const uint32& player_group, const b2Vec2& position) :
-		m_world_{ world }, m_player_group_{ player_group } {
+	/// @param color the color of this player
+	Player(b2World* const world, const char keyboard[5], const uint32& player_group, const b2Vec2& position, const b2Color& color = { 0.9f, 0.7f, 0.7f }) :
+		m_world_{ world }, m_player_group_{ player_group }, m_color_{ color } {
 		// Bind keyboard
 		memcpy(binding_key, keyboard, sizeof(char) * 5);
 
@@ -293,6 +294,8 @@ public:
 		psd.destroyByAge = true;
 		psd.lifetimeGranularity = 0.1f;
 		m_ejector_->SetParticleSystem(world->CreateParticleSystem(&psd));
+
+		SetColor(m_color_);
 	}
 
 	Player(const Player& other) = delete;
@@ -374,8 +377,8 @@ public:
 	}
 
 	// Set the color of this player
-	void SetColor(const b2Color& color){
-		color_ = color;
+	void SetColor(const b2Color& color) {
+		m_color_ = color;
 		m_ejector_->SetColor(color);
 		m_ejector_->GetBody()->SetColor(color);
 	}

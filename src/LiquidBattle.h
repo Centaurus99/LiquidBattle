@@ -1,7 +1,7 @@
 /*
  * @Author: Tong Haixuan
  * @Date: 2021-05-24 20:30:21
- * @LastEditTime: 2021-06-30 00:00:09
+ * @LastEditTime: 2021-06-30 00:16:47
  * @LastEditors: Tong Haixuan
  * @Description: The Main File of LiquidBattle
  */
@@ -18,8 +18,9 @@
 #include "CollisionData.h"
 #include "Player.h"
 #include "Obstacle.h"
+#include "ColorSet.h"
 
-// A Contact Filter to check collision
+ // A Contact Filter to check collision
 class MyContactFilter : public b2ContactFilter {
 public:
 	// Active when collision happen between body and particle
@@ -82,8 +83,8 @@ public:
 
 	LiquidBattle() {
 		m_world->SetContactFilter(&m_contact_filter_);
-		player_list_.push_back(new Player{ m_world, "wsad", 0, b2Vec2{-1.0f, 10.0f} });
-		player_list_.push_back(new Player{ m_world, "ikjl", 1, b2Vec2{1.0f, 10.0f} });
+		player_list_.push_back(new Player{ m_world, "wsad", 0, b2Vec2{-1.0f, 10.0f}, ColorSet[1] });
+		player_list_.push_back(new Player{ m_world, "ikjl", 1, b2Vec2{1.0f, 10.0f}, ColorSet[2] });
 		// obstacle_list_.push_back(new Obstacle{ m_world, -7, 5 + 11, 2.0f, 1.0f, 0.06f, 2.5f });
 		obstacle_list_.push_back(new Obstacle{ m_world, 0, 5, 2.0f, 1.0f, 0.06f, 2.5f });
 		// obstacle_list_.push_back(new Obstacle{ m_world, 7, 5 + 11, 2.0f, 1.0f, 0.06f, 2.5f });
