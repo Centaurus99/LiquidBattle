@@ -1,7 +1,7 @@
 /*
  * @Author: Tong Haixuan
  * @Date: 2021-05-24 20:30:21
- * @LastEditTime: 2021-06-30 00:39:22
+ * @LastEditTime: 2021-06-30 00:45:19
  * @LastEditors: Tong Haixuan
  * @Description: The Main File of LiquidBattle
  */
@@ -243,7 +243,7 @@ public:
 	}
 
 	float32 GetDefaultViewZoom() const {
-		return 0.35f;
+		return 0.38f;
 	}
 
 	static Test* Create() {
