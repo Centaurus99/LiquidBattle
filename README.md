@@ -19,3 +19,9 @@ make -j LiquidBattle
 即可编译运行 `Release` 版本
 
 将命令中的 `Release` 替换为 `Debug` 即可编译运行 `Debug` 版本
+
+### 游戏界面说明
+
+![Initial interface](res/pictures/Initial_interface.png)
+<center>初始界面</center>
+
