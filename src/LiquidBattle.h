@@ -1,7 +1,7 @@
 /*
  * @Author: Tong Haixuan
  * @Date: 2021-05-24 20:30:21
- * @LastEditTime: 2021-06-30 00:45:19
+ * @LastEditTime: 2021-07-01 23:43:22
  * @LastEditors: Tong Haixuan
  * @Description: The Main File of LiquidBattle
  */
@@ -178,14 +178,16 @@ public:
 	void Keyboard(unsigned char key) {
 		// MyDebug::Print(key + 'A' - 'a');
 		for (auto x : player_list_) {
-			x->KeyBoardUpdate(key);
+			x->KeyBoardPress(key);
 		}
 	}
 
 	// Change the keyboard state
 	void KeyboardUp(unsigned char key) {
 		// MyDebug::Print(key);
-		Keyboard(key);
+		for (auto x : player_list_) {
+			x->KeyBoardRelease(key);
+		}
 		if (key == '=') {
 			// obstacle_list_.push_back(new Obstacle{ m_world, 0, 3, 2.0f, 1.0f, 0.06f, 2.5f });
 			player_list_.push_back(new Player{ m_world, "wsad", 0, b2Vec2{-1.0f, 10.0f} });

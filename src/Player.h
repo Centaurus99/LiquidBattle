@@ -1,7 +1,7 @@
 /*
  * @Author: Tong Haixuan
  * @Date: 2021-06-26 20:29:11
- * @LastEditTime: 2021-06-30 00:35:26
+ * @LastEditTime: 2021-07-01 23:43:08
  * @LastEditors: Tong Haixuan
  * @Description: Player Class
  */
@@ -334,11 +334,20 @@ public:
 		NOW_HP_ -= damage_by_player_particle_ * data->GetPlayerCounter_();
 	}
 
-	// Update keyboard state with a key press or release
-	void KeyBoardUpdate(char key) {
+	// Update keyboard state with a key press
+	void KeyBoardPress(char key) {
 		for (uint32 i = 0; i < 4; ++i) {
 			if (key == binding_key[i]) {
-				keyboard_state_ ^= (1 << i);
+				keyboard_state_ |= (1 << i);
+			}
+		}
+	}
+
+	// Update keyboard state with a key release
+	void KeyBoardRelease(char key) {
+		for (uint32 i = 0; i < 4; ++i) {
+			if (key == binding_key[i]) {
+				keyboard_state_ &= (~0) ^ (1 << i);
 			}
 		}
 	}
