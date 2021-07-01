@@ -20,7 +20,7 @@ make -j LiquidBattle
 
 将命令中的 `Release` 替换为 `Debug` 即可编译运行 `Debug` 版本
 
-### 游戏基础要素介绍
+### 基础要素介绍
 
 <center>
     <img style="border-radius: 0.3125em;
@@ -62,4 +62,39 @@ make -j LiquidBattle
 由于 `Obstacle` 是缺角长方形，海水会逐渐渗入内部，逐渐下沉，当接触到游戏区域下边界时被删除。
 
 `Tips: 合理利用浮在水面上的 Obstacle 可以节省喷射背包`
+
+### 进阶要素介绍
+
+#### 拓展功能
+
+|     按键     |        功能         |
+| :----------: | :-----------------: |
+|      Z       |      缩小界面       |
+|      X       |      放大界面       |
+|      R       | 重新开始（Restart） |
+|      P       |    暂停（Pause）    |
+| 鼠标左键拖动 |   拖动游戏中元素    |
+| 鼠标右键拖动 |  调整可视界面位置   |
+|   鼠标滚轮   |    调整界面缩放     |
+
+#### 实验性功能
+
+| 按键 |           功能            |
+| :--: | :-----------------------: |
+|  =   | 向 0 号玩家组添加一名玩家 |
+|  -   |   删除列表最后一名玩家    |
+
+#### `Debug` 模式
+
+当编译选项使用 `Debug` 模式时，游戏界面如下图所示：
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="res/pictures/Debug_interface.png" width = "50%" alt=""/>
+</center>
+
+`Debug` 模式下可以进行相应参数的调整和辅助图形的绘制。
+
+`Warning: Debug 模式下性能较低，帧率可能大幅下降`
 
