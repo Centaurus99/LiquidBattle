@@ -28,7 +28,7 @@
 `float32 Random(const float32& l, const float32& r)`：生成区间 [l,r] 中的随机数。
 
 #### public:
-.
+
 `MyContactFilter m_contact_filter_`：碰撞监听器
 
 `LiquidBattle()`：构造函数，创建初始界面，包括两个玩家，一片海洋，一个障碍物。
