@@ -6,7 +6,7 @@
 
 经测试兼容的环境：`Win10 21H1 Build 19043.1052 家庭中文版` + `cmake version 3.20.2` + `g++ (x86_64-posix-seh-rev0, Built by MinGW-W64 project) 8.1.0`
 
-### 编译运行指南
+## 编译运行指南
 
 在文件目录打开命令行，输入以下命令
 ```
@@ -20,7 +20,7 @@ make -j LiquidBattle
 
 将命令中的 `Release` 替换为 `Debug` 即可编译运行 `Debug` 版本
 
-### 基础要素介绍
+## 基础要素介绍
 
 <center>
     <img style="border-radius: 0.3125em;
@@ -30,7 +30,7 @@ make -j LiquidBattle
 
 默认情况下，游戏一开始生成两个 `Player`（图中蓝色和黄色圆球） 、一个 `Obstacle`（图中粉色缺角长方形）和一片蓝蓝的海洋。可视界面外有绿色围墙限制游戏区域。
 
-#### `Player`
+### `Player`
 
 默认情况下，控制键位如下：
 
@@ -55,7 +55,7 @@ make -j LiquidBattle
 
 喷射出的液体默认将在 5 秒后回收到喷射背包。
 
-#### `Obstacle`
+### `Obstacle`
 
 初始时在 `Player` 下方默认生成一个 `Obstacle`，之后每间隔一定时间会在可视区域偏上方随机位置生成 `Obstacle`。
 
@@ -65,9 +65,9 @@ make -j LiquidBattle
 
 `Warning: 如果 Player 一直飞在上空，有可能会被关在新生成的 Obstacle 里`
 
-### 进阶要素介绍
+## 进阶要素介绍
 
-#### 拓展功能
+### 拓展功能
 
 |     按键     |        功能         |
 | :----------: | :-----------------: |
@@ -79,14 +79,14 @@ make -j LiquidBattle
 | 鼠标右键拖动 |  调整可视界面位置   |
 |   鼠标滚轮   |    调整界面缩放     |
 
-#### 实验性功能
+### 实验性功能
 
 | 按键 |           功能            |
 | :--: | :-----------------------: |
 |  =   | 向 0 号玩家组添加一名玩家 |
 |  -   |   删除列表最后一名玩家    |
 
-#### `Debug` 模式
+### `Debug` 模式
 
 当编译选项使用 `Debug` 模式时，游戏界面如下图所示：
 
@@ -100,7 +100,7 @@ make -j LiquidBattle
 
 `Warning: Debug 模式下性能较低，帧率可能大幅下降`
 
-### 项目目录简介
+## 项目目录简介
 
 - `src/`：项目源文件
 - `res/`：文档使用的资源（如图片）
@@ -108,9 +108,9 @@ make -j LiquidBattle
 - `build/`：编译目录
 - `liquidfun-gcc9/`：[Google Liquidfun](https://github.com/google/liquidfun)
 
-### 实现细节概要
+## 实现细节概要
 
-#### `Ejector` 类
+### `Ejector` 类
 
 继承自 `src/framework/ParticleEmitter.h` 中的 `RadialEmitter` 类，实现了玩家所使用的喷射背包。
 
@@ -120,7 +120,7 @@ make -j LiquidBattle
 
 玩家 `body` 的转向也由 `Ejector` 实现，实现原理为增减 `body` 的旋转角速度。
 
-#### `Player` 类
+### `Player` 类
 
 这是游戏最重要的一个部分，用来接受玩家操作，控制运动，计算伤害，显示玩家信息等。
 
@@ -130,11 +130,11 @@ make -j LiquidBattle
 
 键盘通过在按下和松开时分别设置状态从而实现对长按的响应。
 
-#### `Obstacle` 类
+### `Obstacle` 类
 
 记录 `world` 和 `body` 指针，在析构时从 `world` 中删除对应 `body`。
 
-#### 伤害结算（碰撞记录）
+### 伤害结算（碰撞记录）
 
 每个 `body` 和 `particleSystem` 创建一个 `CollisionData` 作为 `UserData`，其中记录自己的组别和碰撞次数，每次进行伤害结算时按碰撞次数计算伤害，并将计数清零。
 
