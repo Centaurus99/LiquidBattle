@@ -4,6 +4,8 @@
 
 ### **[Class]** MyDebug
 
+#### public:
+
 `template <typename T> static void Print(const T content)`：向标准错误流输出 `content`。**仅在 `Debug` 版本下启用。**
 
 `static void PrintPos(const b2Vec2& pos, const char* name = "")`：输出名字和坐标。**仅在 `Debug` 版本下启用。**
